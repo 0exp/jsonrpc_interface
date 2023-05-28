@@ -12,5 +12,6 @@ AllCops:
     - spec/**/*.rb
     - Gemfile
     - Rakefile
+    - Steepfile
     - jsonrpc_interface.gemspec
     - bin/console
