@@ -1,0 +1,3 @@
+module JsonrpcInterface
+  VERSION: String
+end
