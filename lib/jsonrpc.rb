@@ -14,7 +14,7 @@ module JSONRPC
   require_relative 'jsonrpc/error_response'
   require_relative 'jsonrpc/rpc_object'
 
-  # @return [Hash<Symbol,Hash<String|Integer>>]
+  # @return [Hash<Symbol,Hash<Symbol,String|Integer>>]
   #
   # @api public
   # @since 0.1.0
