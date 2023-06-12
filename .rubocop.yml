@@ -15,3 +15,7 @@ AllCops:
     - Steepfile
     - jsonrpc_interface.gemspec
     - bin/console
+
+Rake/Desc:
+  Exclude:
+    - Rakefile

@@ -7,6 +7,8 @@ require 'rubocop/rake_task'
 require 'rubocop-performance'
 require 'rubocop-rspec'
 require 'rubocop-rake'
+require 'steep'
+require 'steep/cli'
 
 RuboCop::RakeTask.new(:rubocop) do |t|
   config_path = File.expand_path(File.join('.rubocop.yml'), __dir__)
@@ -18,4 +20,8 @@ end
 
 RSpec::Core::RakeTask.new(:rspec)
 
-task default: :rspec
+task :steep do
+  Steep::CLI.new(argv: ['check'], stdout: STDOUT, stderr: STDERR, stdin: STDIN).run
+end
+
+task default: %w[steep rubocop rspec]

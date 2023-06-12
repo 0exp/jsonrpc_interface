@@ -1,3 +1,149 @@
 module JSONRPC
   VERSION: String
+
+  # TODO:
+  #  - try to return the record sub-hash value:
+  #    -> before: Hash[Symbol, Hash[Symbol,untyped]]
+  #    -> after (does not work): Hash[Symbol, { code: Integer, message: String }]
+  ERRORS: Hash[Symbol, Hash[Symbol,untyped]]
+
+  interface _RPCRequest
+    def notification?: () -> bool
+    def request?: () -> bool
+  end
+
+  interface _RPCResponse
+    def error?: () -> bool
+    def success?: () -> bool
+  end
+
+  class Request
+    class Schema
+    end
+
+    include _RPCRequest
+
+    attr_reader jsonrpc: String
+    attr_reader method: String
+    attr_reader params: Hash[String|Symbol,untyped]
+    attr_reader id: String|nil
+
+    def initialize: (
+      jsonrpc: String,
+      method: String,
+      params: Hash[String|Symbol,untyped],
+      id: String
+    ) -> void
+  end
+
+  class Notification
+    class Schema
+    end
+
+    include _RPCRequest
+
+    attr_reader jsonrpc: String
+    attr_reader method: String
+    attr_reader params: Hash[String|Symbol,untyped]
+
+    def initialize: (
+      jsonrpc: String,
+      method: String,
+      params: Hash[String|Symbol,untyped]
+    ) -> void
+  end
+
+  class Response
+    include _RPCResponse
+
+    attr_reader jsonrpc: String
+    attr_reader result: Hash[String|Symbol,untyped]
+    attr_reader id: String|nil
+
+    def initialize: (
+      jsonrpc: String,
+      result: Hash[String|Symbol,untyped],
+      id: String
+    ) -> void
+  end
+
+  class ErrorResponse
+    class ErrorSchema
+    end
+
+    include _RPCResponse
+
+    attr_reader jsonrpc: String
+    attr_reader error: { code: Integer, message: String, data: Hash[String|Symbol,untyped] }
+    attr_reader id: String|nil
+
+
+    def initialize: (
+      jsonrpc: String,
+      error: {
+        code: Integer,
+        message: String,
+        data: Hash[String|Symbol,untyped]
+      },
+      id: String|nil
+    ) -> void
+  end
+
+  module RPCObject
+    def self?.response: (
+      ?Hash[String|Symbol,untyped],
+      ?request_id: String|nil
+    ) -> (Response|nil)
+
+    def self?.error: (
+      ?Hash[String|Symbol,untyped],
+      ?code: Integer,
+      ?message:  String,
+      ?request_id: String|nil,
+    ) -> ErrorResponse
+
+    def self?.request: (
+      ?jsonrpc: String,
+      method: String,
+      params: Hash[String|Symbol,untyped],
+      id: String
+    ) -> Request
+
+    def self?.notification: (
+      ?jsonrpc: String,
+      method: String,
+      params: Hash[String|Symbol,untyped]
+    ) -> Notification
+
+    def self?.invalid_request_error: (
+      ?Hash[String|Symbol,untyped],
+      ?request_id: String|nil
+    ) -> ErrorResponse
+
+    def self?.parse_error: () -> ErrorResponse
+
+    def self?.jsonrpc_specification_violation_error: (
+      ?request_id: String|nil
+    ) -> ErrorResponse
+
+    def self?.method_not_found_error: (
+      ?request_id: String|nil
+    ) -> ErrorResponse
+
+    def self?.invalid_params_error: (
+      ?Hash[String|Symbol,untyped],
+      ?request_id: String|nil
+    ) -> ErrorResponse
+
+    def self?.internal_error: (
+      *String|Symbol,
+      ?error_context: Hash[String|Symbol,untyped],
+      ?request_id: String|nil
+    ) -> ErrorResponse
+
+    def self?.detailed_internal_error: (
+      Exception,
+      ?request_id: String|nil
+    ) -> ErrorResponse
+  end
 end
