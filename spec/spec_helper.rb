@@ -14,6 +14,11 @@ SimpleCov.start
 require 'bundler/setup'
 require 'jsonrpc_interface'
 require 'pry'
+require 'securerandom'
+
+module SpecSupport
+  require_relative 'support/jsonrpc_helpers'
+end
 
 RSpec.configure do |config|
   Kernel.srand config.seed
@@ -23,4 +28,5 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.expect_with(:rspec) { |c| c.syntax = :expect }
   Thread.abort_on_exception = true
+  config.include(SpecSupport::JSONRPCHelpers)
 end
