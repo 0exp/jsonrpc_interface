@@ -18,6 +18,7 @@ require 'securerandom'
 
 module SpecSupport
   require_relative 'support/jsonrpc_helpers'
+  require_relative 'support/data_randomizer_helpers'
 end
 
 RSpec.configure do |config|
@@ -29,4 +30,5 @@ RSpec.configure do |config|
   config.expect_with(:rspec) { |c| c.syntax = :expect }
   Thread.abort_on_exception = true
   config.include(SpecSupport::JSONRPCHelpers)
+  config.include(SpecSupport::DataRandomizerHelpers)
 end

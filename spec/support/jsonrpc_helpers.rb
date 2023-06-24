@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-module SpecSupport
-  module JSONRPCHelpers
-    def rand_request_id
-      SecureRandom.uuid
-    end
-  end
+module SpecSupport::JSONRPCHelpers
+  def rand_jrpc_method = "#{gen_string}.#{gen_string}"
+  def rand_jrpc_params = gen_hash
+  def rand_jrpc_request_id = gen_uuid
 end
