@@ -187,6 +187,8 @@ JSONRPC::ErrorResponse#error
 ```ruby
 JSONRPC::RPCObject.internal_error('some', 'error', 'code', error_context: { some: 'context' })
 JSONRPC::RPCObject.internal_error('some', 'error', 'code', error_context: { some: 'context' }, request_id: SecureRandom.uuid)
+JSONRPC::RPCObject.internal_error
+JSONRPC::RPCObject.internal_error(request_id: SecureRandom.uuid)
 
 JSONRPC::ErrorResponse#error
 # signature =>
