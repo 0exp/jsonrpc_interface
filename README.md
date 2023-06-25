@@ -26,12 +26,12 @@ require 'jsonrpc_interface'
 
 - [JSONRPC::ERRORS](#jsonrpcerrors)
 - [JSONRPC::Request](#jsonrpcrequest)
-  - [JSONRPC::Request::Schema](#jsonrpcrequestschema)
+  - [Schema](#jsonrpcrequestschema)
 - [JSONRPC::Notification](#jsonrpcnotification)
-  - [JSONRPC::Notification::Schema](#jsonrpcnotificationschema)
+  - [Schema](#jsonrpcnotificationschema)
 - [JSONRPC::Response](#jsonrpcresponse)
 - [JSONRPC::ErrorResponse](#jsonrpcerrorresponse)
-  - [JSONRPC::ErrorResponse::Schema](#jsonrpcerrorresponseschema)
+  - [Schema](#jsonrpcerrorresponseschema)
 - [JSONRPC::RPCObject](#jsonrpcrpcobject)
   - [.response](#response)
   - [.request](#request)
@@ -60,6 +60,9 @@ JSONRPC::ERRORS
   jsonrpc_specification_violation: { code: -33_003, message: 'JSONRPC Specification Violation' }
 }
 ```
+
+---
+
 ### JSONRPC::Request
 
 ```ruby
@@ -82,6 +85,8 @@ schema do
 end
 ```
 
+---
+
 ### JSONRPC::Notification
 
 ```ruby
@@ -102,6 +107,8 @@ schema do
 end
 ```
 
+---
+
 ### JSONRPC::Response
 
 ```ruby
@@ -111,6 +118,8 @@ JSONRPC::Response#jsonrpc (String)
 JSONRPC::Response#result (Hash)
 JSONRPC::Response#id (String)
 ```
+
+---
 
 ### JSONRPC::ErrorResponse
 
@@ -136,6 +145,8 @@ schema do
   required(:data).type(:hash).filled
 end
 ```
+
+---
 
 ### JSONRPC::RPCObject
 
