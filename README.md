@@ -1,10 +1,10 @@
 # JSONRPC Interface
 
-- Installation
-- Usage
-- Development
-- License
-- Authors
+- [Installation](#installation)
+- [Usage](#usage)
+- [Development](#development)
+- [License](#license)
+- [Authors](#authors)
 
 ## Installation
 
@@ -24,10 +24,10 @@ require 'jsonrpc_interface'
 
 ## Usage
 
-- JSONRPC::ErrorResponse
-- JSONRPC::Response
-- JSONRPC::Request
-- JSONRPC::Notification
+- [JSONRPC::ErrorResponse](#jsonrpcerrorresponse)
+- [JSONRPC::Response](#jsonrpcresponse)
+- [JSONRPC::Request](#jsonrpcrequest)
+- [JSONRPC::Notification](#jsonrpcnotification)
 - JSONRPC::RPCObject
   - .response
   - .request
