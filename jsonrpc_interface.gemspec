@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.summary     = 'JSONRPC Interface for Ruby projects.'
   spec.description = 'JSONRPC Interface for Ruby projects realised in object oriented way. ' \
                      'JRPC Request, JRPC Notification, JRPC Response, JRPC Error Response, ' \
-                     'JRPC Object Builder and Error Codes.'
+                     'JRPC Object Builder and JRPC Error Codes.'
 
   spec.homepage    = 'https://github.com/0exp/jsonrpc_interface'
   spec.license     = 'MIT'

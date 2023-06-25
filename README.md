@@ -1,6 +1,6 @@
 # JSONRPC Interface
 
-JRPC Request, JRPC Notification, JRPC Response, JRPC Error Response, JRPC Object Builder and Error Codes;
+JRPC Request, JRPC Notification, JRPC Response, JRPC Error Response, JRPC Object Builder and JRPC Error Codes in Object Oriented Way.
 
 ---
 
