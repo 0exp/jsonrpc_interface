@@ -24,10 +24,14 @@ require 'jsonrpc_interface'
 
 ## Usage
 
-- [JSONRPC::ErrorResponse](#jsonrpcerrorresponse)
-- [JSONRPC::Response](#jsonrpcresponse)
+- [JSONRPC::ERRORS](#jsonrpcerrors)
 - [JSONRPC::Request](#jsonrpcrequest)
+  - [JSONRPC::Request::Schema](#jsonrpcrequestschema)
 - [JSONRPC::Notification](#jsonrpcnotification)
+  - [JSONRPC::Notification::Schema](#jsonrpcnotificationschema)
+- [JSONRPC::Response](#jsonrpcresponse)
+- [JSONRPC::ErrorResponse](#jsonrpcerrorresponse)
+  - [JSONRPC::ErrorResponse::Schema](#jsonrpcerrorresponseschema)
 - [JSONRPC::RPCObject](#jsonrpcrpcobject)
   - [.response](#response)
   - [.request](#request)
@@ -39,6 +43,74 @@ require 'jsonrpc_interface'
   - [.invalid_params_error](#invalid_params_error)
   - [.internal_error](#internal_error)
   - [.detailed_internal_error](#detailed_internal_error)
+
+### JSONRPC::ERRORS
+
+```ruby
+JSONRPC::ERRORS
+# =>
+{
+  parse_error: { code: -32_700, message: 'Parse Error' },
+  invalid_request: { code: -32_600, message: 'Invalid Request' },
+  method_not_found: { code: -32_601, message: 'Method Not Found' },
+  invalid_params: { code: -32_602, message: 'Invalid Params' },
+  internal_error: { code: -32_603, message: 'Internal Error' },
+  unauthorized: { code: -33_001, message: 'Unauthorized' },
+  application_error: { code: -33_002, message: 'Application Error' },
+  jsonrpc_specification_violation: { code: -33_003, message: 'JSONRPC Specification Violation' }
+}
+```
+### JSONRPC::Request
+
+```ruby
+JSONRPC::Request
+JSONRPC::Request.new(jsonrpc: '2.0', method: 'some.method', params: { some: 'params' }, id: 'sOmEiD')
+JSONRPC::Request#jsonrpc (String)
+JSONRPC::Request#method (String)
+JSONRPC::Request#params (Hash)
+JSONRPC::Request#id (String)
+```
+
+### JSONRPC::Request::Schema
+
+```ruby
+schema do
+  required(:jsonrpc).type(:string).filled
+  required(:method).type(:string).filled
+  required(:params).type(:hash).filled
+  required(:id).type(:string).filled
+end
+```
+
+### JSONRPC::Notification
+
+```ruby
+JSONRPC::Notification
+JSONRPC::Notification.new(jsonrpc: '2.0', method: 'some.method', params: { some: 'params' })
+JSONRPC::Notification#jsonrpc (String)
+JSONRPC::Notification#method (String)
+JSONRPC::Notification#params (Hash)
+```
+
+### JSONRPC::Notification::Schema
+
+```ruby
+schema do
+  required(:jsonrpc).type(:string).filled
+  required(:method).type(:string).filled
+  required(:params).type(:hash).filled
+end
+```
+
+### JSONRPC::Response
+
+```ruby
+JSONRPC::Response
+JSONRPC::Response.new(jsonrpc: '2.0', result: { some: 'result' }, id: 'sOmEiD')
+JSONRPC::Response#jsonrpc (String)
+JSONRPC::Response#result (Hash)
+JSONRPC::Response#id (String)
+```
 
 ### JSONRPC::ErrorResponse
 
@@ -55,35 +127,14 @@ JSONRPC::ErrorResponse#error
 { code: Integer, message: String, data: Hash }
 ```
 
-### JSONRPC::Response
+### JSONRPC::ErrorResponse::Schema
 
 ```ruby
-JSONRPC::Response
-JSONRPC::Response.new(jsonrpc: '2.0', result: { some: 'result' }, id: 'sOmEiD')
-JSONRPC::Response#jsonrpc (String)
-JSONRPC::Response#result (Hash)
-JSONRPC::Response#id (String)
-```
-
-### JSONRPC::Request
-
-```ruby
-JSONRPC::Request
-JSONRPC::Request.new(jsonrpc: '2.0', method: 'some.method', params: { some: 'params' }, id: 'sOmEiD')
-JSONRPC::Request#jsonrpc (String)
-JSONRPC::Request#method (String)
-JSONRPC::Request#params (Hash)
-JSONRPC::Request#id (String)
-```
-
-### JSONRPC::Notification
-
-```ruby
-JSONRPC::Notification
-JSONRPC::Notification.new(jsonrpc: '2.0', method: 'some.method', params: { some: 'params' })
-JSONRPC::Notification#jsonrpc (String)
-JSONRPC::Notification#method (String)
-JSONRPC::Notification#params (Hash)
+schema do
+  required(:code).type(:integer).filled
+  required(:message).type(:string).filled
+  required(:data).type(:hash).filled
+end
 ```
 
 ### JSONRPC::RPCObject
@@ -135,7 +186,7 @@ JSONRPC::RPCObject.invalid_request_error({ some: 'data' })
 JSONRPC::RPCObject.invalid_request_error({ some: 'data' }, request_id: SecureRandom.uuid)
 
 JSONRPC::ErrorResponse#error
-# signature =>
+# error hash signature =>
 { code: -32_600, message: 'Invalid Request', data: { some: 'data' } }
 ```
 
@@ -145,7 +196,7 @@ JSONRPC::ErrorResponse#error
 JSONRPC::RPCObject.parse_error
 
 JSONRPC::ErrorResponse#error
-# signature =>
+# error hash signature =>
 { code: -32_700, message: 'Parse Error', data: {} }
 ```
 
@@ -156,7 +207,7 @@ JSONRPC::RPCObject.jsonrpc_specification_violation_error
 JSONRPC::RPCObject.jsonrpc_specification_violation_error(request_id: SecureRandom.uuid)
 
 JSONRPC::ErrorResponse#error
-# signature =>
+# error hash signature =>
 { code: -33_003, message: 'JSONRPC Specification Violation', data: {} }
 ```
 
@@ -167,7 +218,7 @@ JSONRPC::RPCObject.method_not_found_error
 JSONRPC::RPCObject.method_not_found_error(request_id: SecureRandom.uuid)
 
 JSONRPC::ErrorResponse#error
-# signature =>
+# error hash signature =>
 { code: -32_601, message: 'Method Not Found', data: {} }
 ```
 
@@ -178,7 +229,7 @@ JSONRPC::RPCObject.invalid_params_error
 JSONRPC::RPCObject.invalid_params_error(request_id: SecureRandom.uuid)
 
 JSONRPC::ErrorResponse#error
-# signature =>
+# error hash signature =>
 { code: -32_602, message: 'Invalid Params', data: {} }
 ```
 
@@ -191,7 +242,7 @@ JSONRPC::RPCObject.internal_error
 JSONRPC::RPCObject.internal_error(request_id: SecureRandom.uuid)
 
 JSONRPC::ErrorResponse#error
-# signature =>
+# error hash signature =>
 {
   code: -32_603,
   message: 'Internal Error',
