@@ -28,17 +28,17 @@ require 'jsonrpc_interface'
 - [JSONRPC::Response](#jsonrpcresponse)
 - [JSONRPC::Request](#jsonrpcrequest)
 - [JSONRPC::Notification](#jsonrpcnotification)
-- JSONRPC::RPCObject
-  - .response
-  - .request
-  - .notification
-  - .invalid_request_error
-  - .parse_error
-  - .jsonrpc_specification_violation_error
-  - .method_not_found_error
-  - .invalid_params_error
-  - .internal_error
-  - .detailed_internal_error
+- [JSONRPC::RPCObject](#jsonrpcrpcobject)
+  - [.response](#response)
+  - [.request](#request)
+  - [.notification](#notification)
+  - [.invalid_request_error](#invalid_request_error)
+  - [.parse_error](#parse_error)
+  - [.jsonrpc_specification_violation_error](#jsonrpc_specification_violation_error)
+  - [.method_not_found_error](#method_not_found_error)
+  - [.invalid_params_error](#invalid_params_error)
+  - [.internal_error](#internal_error)
+  - [.detailed_internal_error](#detailed_internal_error)
 
 ### JSONRPC::ErrorResponse
 
@@ -88,16 +88,16 @@ JSONRPC::Notification#params (Hash)
 
 ### JSONRPC::RPCObject
 
-- .response
-- .request
-- .notification
-- .invalid_request_error
-- .parse_error
-- .jsonrpc_specification_violation_error
-- .method_not_found_error
-- .invalid_params_error
-- .internal_error
-- .detailed_internal_error
+- [.response](#response)
+- [.request](#request)
+- [.notification](#notification)
+- [.invalid_request_error](#invalid_request_error)
+- [.parse_error](#parse_error)
+- [.jsonrpc_specification_violation_error](#jsonrpc_specification_violation_error)
+- [.method_not_found_error](#method_not_found_error)
+- [.invalid_params_error](#invalid_params_error)
+- [.internal_error](#internal_error)
+- [.detailed_internal_error](#detailed_internal_error)
 
 ### .response
 
