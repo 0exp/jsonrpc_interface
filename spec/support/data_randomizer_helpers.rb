@@ -5,6 +5,7 @@ module SpecSupport::DataRandomizerHelpers
   TYPE_LIST = [String, Integer, Float, Array, Hash].freeze
 
   def gen_array = []
+  def gen_string_array = Array.new(rand(1..10)) { gen_string }
   def gen_uuid = SecureRandom.uuid
   def gen_float = rand(1.0..10.0).to_f
   def gen_integer = rand(1..10)

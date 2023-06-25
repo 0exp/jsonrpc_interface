@@ -13,7 +13,9 @@ module JSONRPC::RPCObject
   # @since 0.1.0
   def response(result = {}, request_id: nil)
     return if request_id == nil # NOTE: nil is treated as no result
-    JSONRPC::Response.new(jsonrpc: '2.0', result:, id:)
+
+    # @type var request_id: untyped
+    JSONRPC::Response.new(jsonrpc: '2.0', result:, id: request_id)
   end
 
   # @param data [Hash<String|Symbol,Any>]
@@ -36,7 +38,7 @@ module JSONRPC::RPCObject
       id: request_id
     )
   end
-  alias_method :application_error, :error
+  class << self; alias_method :application_error, :error; end
 
   # @option jsonrpc [String]
   # @option method [String]
@@ -71,7 +73,7 @@ module JSONRPC::RPCObject
     error(
       data,
       code: JSONRPC::ERRORS[:invalid_request][:code],
-      message: JSONRPC::ERRORS[:invalid_reqeust][:message],
+      message: JSONRPC::ERRORS[:invalid_request][:message],
       request_id:
     )
   end

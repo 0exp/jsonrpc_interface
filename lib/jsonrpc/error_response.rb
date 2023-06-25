@@ -3,17 +3,17 @@
 # @api public
 # @since 0.1.0
 class JSONRPC::ErrorResponse < SmartCore::ValueObject
-  # @return [Class<SmartCore::Schema>]
+  # @return [SmartCore::Schema]
   #
   # @api public
   # @since 0.1.0
-  class ErrorSchema < SmartCore::Schema
+  ErrorSchema = Class.new(SmartCore::Schema) do
     schema do
       required(:code).type(:integer).filled
       required(:message).type(:string).filled
       required(:data).type(:hash).filled
     end
-  end
+  end.new
 
   # @api public
   # @since 0.1.0

@@ -23,7 +23,7 @@ module JSONRPC
       code: -32_700,
       message: 'Parse Error'
     },
-    invalid_reqeust: {
+    invalid_request: {
       code: -32_600,
       message: 'Invalid Request'
     },

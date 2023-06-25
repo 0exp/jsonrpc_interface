@@ -3,18 +3,18 @@
 # @api public
 # @since 0.1.0
 class JSONRPC::Request < SmartCore::ValueObject
-  # @return [Class<SmartCore::Schema>]
+  # @return [SmartCore::Schema]
   #
   # @api public
   # @since 0.1.0
-  class Schema < SmartCore::Schema
+  Schema = Class.new(SmartCore::Schema) do
     schema do
       required(:jsonrpc).type(:string).filled
       required(:method).type(:string).filled
       required(:params).type(:hash).filled
       required(:id).type(:string).filled
     end
-  end
+  end.new
 
   # @api public
   # @since 0.1.0

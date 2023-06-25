@@ -18,9 +18,6 @@ module JSONRPC
   end
 
   class Request
-    class Schema
-    end
-
     include _RPCRequest
 
     attr_reader jsonrpc: String
@@ -37,9 +34,6 @@ module JSONRPC
   end
 
   class Notification
-    class Schema
-    end
-
     include _RPCRequest
 
     attr_reader jsonrpc: String
@@ -68,15 +62,11 @@ module JSONRPC
   end
 
   class ErrorResponse
-    class ErrorSchema
-    end
-
     include _RPCResponse
 
     attr_reader jsonrpc: String
     attr_reader error: { code: Integer, message: String, data: Hash[String|Symbol,untyped] }
     attr_reader id: String|nil
-
 
     def initialize: (
       jsonrpc: String,
