@@ -44,6 +44,8 @@ require 'jsonrpc_interface'
   - [.internal_error](#internal_error)
   - [.detailed_internal_error](#detailed_internal_error)
 
+---
+
 ### JSONRPC::ERRORS
 
 ```ruby
