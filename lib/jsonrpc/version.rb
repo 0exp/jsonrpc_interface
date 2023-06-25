@@ -4,6 +4,6 @@ module JSONRPC
   # @return [String]
   #
   # @api public
-  # @since 0.0.1
-  VERSION = '0.0.1'
+  # @since 0.1.0
+  VERSION = '0.1.0'
 end
