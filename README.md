@@ -86,7 +86,20 @@ JSONRPC::Notification#method (String)
 JSONRPC::Notification#params (Hash)
 ```
 
-### JSONRPC::RPCObject.response
+### JSONRPC::RPCObject
+
+- .response
+- .request
+- .notification
+- .invalid_request_error
+- .parse_error
+- .jsonrpc_specification_violation_error
+- .method_not_found_error
+- .invalid_params_error
+- .internal_error
+- .detailed_internal_error
+
+### .response
 
 ```ruby
 JSONRPC::RPCObject.response(
@@ -95,7 +108,7 @@ JSONRPC::RPCObject.response(
 ) # => JSONRPC::Response
 ```
 
-### JSONRPC::RPCObject.request
+### .request
 
 
 ```ruby
@@ -106,7 +119,7 @@ JSONRPC::RPCObject.request(
 ) # => JSONRPC::Request
 ```
 
-### JSONRPC::RPCObject.notification
+### .notification
 
 ```ruby
 JSONRPC::RPCObject.notification(
@@ -115,7 +128,7 @@ JSONRPC::RPCObject.notification(
 ) # => JSONRPC::Notification
 ```
 
-### JSONRPC::RPCObject.invalid_request_error
+### .invalid_request_error
 
 ```ruby
 JSONRPC::RPCObject.invalid_request_error({ some: 'data' })
@@ -126,7 +139,7 @@ JSONRPC::ErrorResponse#error
 { code: -32_600, message: 'Invalid Request', data: { some: 'data' } }
 ```
 
-### JSONRPC::RPCObject.parse_error
+### .parse_error
 
 ```ruby
 JSONRPC::RPCObject.parse_error
@@ -136,7 +149,7 @@ JSONRPC::ErrorResponse#error
 { code: -32_700, message: 'Parse Error', data: {} }
 ```
 
-### JSONRPC::RPCObject.jsonrpc_specification_violation_error
+### .jsonrpc_specification_violation_error
 
 ```ruby
 JSONRPC::RPCObject.jsonrpc_specification_violation_error
@@ -147,7 +160,7 @@ JSONRPC::ErrorResponse#error
 { code: -33_003, message: 'JSONRPC Specification Violation', data: {} }
 ```
 
-### JSONRPC::RPCObject.method_not_found_error
+### .method_not_found_error
 
 ```ruby
 JSONRPC::RPCObject.method_not_found_error
@@ -158,7 +171,7 @@ JSONRPC::ErrorResponse#error
 { code: -32_601, message: 'Method Not Found', data: {} }
 ```
 
-### JSONRPC::RPCObject.invalid_params_error
+### .invalid_params_error
 
 ```ruby
 JSONRPC::RPCObject.invalid_params_error
@@ -169,7 +182,7 @@ JSONRPC::ErrorResponse#error
 { code: -32_602, message: 'Invalid Params', data: {} }
 ```
 
-### JSONRPC::RPCObject.internal_error
+### .internal_error
 
 ```ruby
 JSONRPC::RPCObject.internal_error('some', 'error', 'code', error_context: { some: 'context' })
@@ -187,7 +200,7 @@ JSONRPC::ErrorResponse#error
 }
 ```
 
-### JSONRPC::RPCObject.detailed_internal_error
+### .detailed_internal_error
 
 ```ruby
 JSONRPC::RPCObject.detailed_internal_error(exception)
