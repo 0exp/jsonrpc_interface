@@ -1,5 +1,9 @@
 # JSONRPC Interface
 
+JRPC Request, JRPC Notification, JRPC Response, JRPC Error Response, JRPC Object Builder and Error Codes;
+
+---
+
 - [Installation](#installation)
 - [Usage](#usage)
 - [Development](#development)
